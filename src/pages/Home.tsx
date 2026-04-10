@@ -1,6 +1,27 @@
-import { Search, Database, Sparkles, GraduationCap, ArrowRight, UserCircle, ChevronRight } from 'lucide-react';
+import { Search, Database, Sparkles, GraduationCap, ArrowRight, UserCircle, ChevronRight, Users, BookOpen, Activity } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+
+const stats = [
+  {
+    icon: <BookOpen className="w-6 h-6 text-primary" />,
+    value: '30+',
+    label: '精选技能',
+    bgColor: 'bg-primary/10'
+  },
+  {
+    icon: <Users className="w-6 h-6 text-secondary" />,
+    value: '10w+',
+    label: '活跃用户',
+    bgColor: 'bg-secondary/10'
+  },
+  {
+    icon: <Activity className="w-6 h-6 text-green-600" />,
+    value: '5w+',
+    label: '日均使用',
+    bgColor: 'bg-green-500/10'
+  }
+];
 
 const hotSkills = [
   {
@@ -38,25 +59,40 @@ export default function Home() {
   return (
     <main className="pt-[72px]">
       {/* Hero Section */}
-      <section className="relative min-h-[716px] flex flex-col items-center justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]"></div>
+      <section className="relative min-h-[680px] flex flex-col items-center justify-center px-6 overflow-hidden bg-white">
+        {/* Background Smudge Effects */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[15%] -left-[10%] w-[60%] h-[60%] bg-orange-300/30 rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute top-[5%] -right-[15%] w-[50%] h-[50%] bg-blue-400/25 rounded-full blur-[120px]"></div>
+          <div className="absolute top-[40%] left-[10%] w-[40%] h-[40%] bg-pink-300/20 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-[10%] right-[20%] w-[55%] h-[55%] bg-primary/15 rounded-full blur-[150px]"></div>
         </div>
+
         <div className="relative z-10 text-center max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low border border-outline-variant/10 mb-8"
+          >
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">专为中国教育优化的 AI 技能平台</span>
+          </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-on-surface font-headline"
+            className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-on-surface font-headline leading-[1.1]"
           >
-            探索高效的 <span className="text-primary">AI 技能</span>
+            解锁 <span className="text-primary relative">终身学习<svg className="absolute -bottom-2 left-0 w-full h-2 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 25 0 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="4" /></svg></span> 的超能力
           </motion.h1>
+          
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-12"
+            className="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            在 OpenClaw Skills，我们为你策展全球最前沿的 AI 应用场景，助你掌握未来的生产力。
+            精选 OpenClaw 生态中的优质教育技能，为教师提供教学辅助，为学生打造多维度能力成长体系。
           </motion.p>
           
           {/* Search Bar */}
@@ -64,27 +100,37 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="relative max-w-2xl mx-auto group"
+            className="relative max-w-2xl mx-auto group mb-12"
           >
             <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
               <Search className="w-6 h-6 text-outline" />
             </div>
             <input 
-              className="w-full h-16 pl-16 pr-8 bg-surface-container-lowest rounded-2xl border-0 shadow-[0_20px_50px_rgba(0,88,188,0.08)] focus:ring-2 focus:ring-primary/20 transition-all text-lg placeholder:text-outline/60" 
+              className="w-full h-16 pl-16 pr-8 bg-white/80 backdrop-blur-sm rounded-2xl border border-outline-variant/10 shadow-[0_20px_50px_rgba(0,0,0,0.04)] focus:ring-2 focus:ring-primary/20 transition-all text-lg placeholder:text-outline/60" 
               placeholder="搜索你感兴趣的 AI 技能..." 
               type="text"
             />
             <div className="absolute right-3 inset-y-3">
-              <button className="h-full px-6 bg-primary text-white rounded-xl font-semibold hover:bg-primary-container transition-colors">
-                搜索
+              <button className="h-full px-8 bg-primary text-white rounded-xl font-bold hover:bg-primary-container transition-all shadow-lg shadow-primary/20">
+                探索全部技能
               </button>
             </div>
           </motion.div>
-          
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <span className="text-sm font-medium text-outline uppercase tracking-widest">推荐词:</span>
-            {['数学解题', '文案写作', '代码生成'].map((tag) => (
-              <a key={tag} className="px-4 py-1.5 bg-surface-container-low hover:bg-surface-container-high rounded-full text-xs font-medium transition-colors" href="#">{tag}</a>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="max-w-4xl mx-auto px-6 -mt-24 relative z-20">
+        <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-outline-variant/10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center group">
+                <div className={`w-14 h-14 ${stat.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  {stat.icon}
+                </div>
+                <div className="text-4xl font-bold text-on-surface font-headline mb-2">{stat.value}</div>
+                <div className="text-sm font-medium text-on-surface-variant tracking-wide uppercase">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
